@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,7 +17,7 @@ public class HotelFullResponseDto {
     private String brand;
     private AddressResponseDto address;
     private ContactResponseDto contacts;
-    private ArrivalTimeResponseDto arrivalTimes;
-    private List<String> amenities;
+    private ArrivalTimeResponseDto arrivalTime;
+    private Set<String> amenities;
 
 }
