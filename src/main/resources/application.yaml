@@ -1,0 +1,25 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: hotel-service
+  datasource:
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    url: ${DB_URL}
+    driver-class-name: ${DB_DRIVER}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    change-log: db/db.changelog-master.yaml
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+    resolve-schema-properties: true
+
+server:
+  port: 8092
