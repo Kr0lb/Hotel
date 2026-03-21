@@ -22,7 +22,7 @@ public class ArrivalTime {
 
     private LocalTime checkOut;
 
-    @OneToOne
+    @OneToOne(mappedBy = "arrivalTime")
     private Hotel hotel;
 
 }

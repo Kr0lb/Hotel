@@ -8,7 +8,7 @@ import lombok.*;
 @Entity
 @Builder
 @NoArgsConstructor
-@Table(name = "adddresses")
+@Table(name = "address")
 @AllArgsConstructor
 public class Address {
 
@@ -26,7 +26,7 @@ public class Address {
 
     private String postCode;
 
-    @OneToOne
+    @OneToOne(mappedBy = "address")
     private Hotel hotel;
 
 }
