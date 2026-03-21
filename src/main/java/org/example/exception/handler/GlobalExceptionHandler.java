@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     private ResponseEntity<ErrorResponse> buildResponse(HttpStatus status, String responseMessage, Exception ex) {
         log.error("{}: {}", ex.getClass().getSimpleName(), ex.getMessage());
-        return ResponseEntity.status(status).body(new ErrorResponse(status.value(), ex.getMessage()));
+        return ResponseEntity.status(status).body(new ErrorResponse(status.value(), responseMessage));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
