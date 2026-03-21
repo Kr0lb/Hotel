@@ -34,15 +34,6 @@ class HotelServiceTest {
     @Mock
     private HotelMapper hotelMapper;
 
-    @Mock
-    private AddressMapper addressMapper;
-
-    @Mock
-    private ArrivalTimeMapper arrivalTimeMapper;
-
-    @Mock
-    private ContactMapper contactMapper;
-
     @InjectMocks
     private HotelService hotelService;
 
