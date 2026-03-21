@@ -1,14 +1,12 @@
+package org.example.service;
+
 import jakarta.persistence.EntityNotFoundException;
 import org.example.dto.request.HotelRequestDto;
 import org.example.dto.response.HotelFullResponseDto;
 import org.example.dto.response.HotelSimpleResponseDto;
 import org.example.entity.Hotel;
-import org.example.mapper.AddressMapper;
-import org.example.mapper.ArrivalTimeMapper;
-import org.example.mapper.ContactMapper;
 import org.example.mapper.HotelMapper;
 import org.example.repository.HotelRepository;
-import org.example.service.HotelService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,7 +36,7 @@ class HotelServiceTest {
     private HotelService hotelService;
 
     @Test
-    @DisplayName("Получение отеля по Id - 200")
+    @DisplayName("Получение отеля по Id")
     void getHotelDtoById_Success() {
         Long hotelId = 1L;
         Hotel hotel = new Hotel();
@@ -54,7 +52,7 @@ class HotelServiceTest {
     }
 
     @Test
-    @DisplayName("Получение отеля по Id - 400")
+    @DisplayName("Получение отеля по")
     void getHotelDtoById_NotFound() {
         when(hotelRepository.findById(anyLong())).thenReturn(Optional.empty());
 
@@ -62,7 +60,7 @@ class HotelServiceTest {
     }
 
     @Test
-    @DisplayName("Создание отеля - 200")
+    @DisplayName("Создание отеля")
     void createHotel_Success() {
         HotelRequestDto request = HotelRequestDto.builder().build();
         Hotel hotel = new Hotel();

@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import org.example.dto.request.HotelRequestDto;
 import org.example.dto.response.HotelFullResponseDto;
 import org.example.dto.response.HotelSimpleResponseDto;
@@ -117,7 +119,7 @@ public interface HotelController {
                     )
             }
     )
-    HotelSimpleResponseDto createHotel(HotelRequestDto hotelRequestDto);
+    HotelSimpleResponseDto createHotel(@Valid HotelRequestDto hotelRequestDto);
 
     @Operation(summary = "Добавление списка amenities к отелю",
             responses = {
@@ -149,6 +151,8 @@ public interface HotelController {
                     )
             }
     )
-    Map<String, Long> getHistogram(String param);
+    Map<String, Long> getHistogram(
+            @Pattern(regexp = "^(brand|city|country|amenities)$", message = "Запрос может включать только одно из значений: brand, city, country, amenities.")
+            String param);
 
 }

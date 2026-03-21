@@ -29,7 +29,7 @@ databaseChangeLog:
               - column:
                   name: post_code
                   type: VARCHAR(255)
-            tableName: adddresses
+            tableName: addresses
   - changeSet:
       id: 1774099369693-2
       author: admin
@@ -178,7 +178,7 @@ databaseChangeLog:
             baseTableName: hotels
             constraintName: FK_HOTELS_ON_ADDRESS
             referencedColumnNames: id
-            referencedTableName: adddresses
+            referencedTableName: addresses
   - changeSet:
       id: 1774099369693-11
       author: admin

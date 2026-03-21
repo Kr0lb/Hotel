@@ -1,17 +1,18 @@
 package org.example.controller.impl;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.controller.HotelController;
 import org.example.dto.request.HotelRequestDto;
 import org.example.dto.response.HotelFullResponseDto;
 import org.example.dto.response.HotelSimpleResponseDto;
 import org.example.service.HotelService;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/property-view")
@@ -46,7 +47,7 @@ public class HotelControllerImpl implements HotelController {
 
     @Override
     @PostMapping("/hotels")
-    public HotelSimpleResponseDto createHotel(@RequestBody @Valid HotelRequestDto hotelRequestDto) {
+    public HotelSimpleResponseDto createHotel(@RequestBody HotelRequestDto hotelRequestDto) {
         return hotelService.createHotel(hotelRequestDto);
     }
 
@@ -58,7 +59,8 @@ public class HotelControllerImpl implements HotelController {
 
     @Override
     @GetMapping("/histogram/{param}")
-    public Map<String, Long> getHistogram(@PathVariable("param") String param) {
+    public Map<String, Long> getHistogram(
+            @PathVariable("param") String param) {
         return hotelService.getHistogram(param);
     }
 }
