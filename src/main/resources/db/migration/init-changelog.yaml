@@ -1,0 +1,204 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1774099369693-1
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_addresses
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: house_number
+                  type: VARCHAR(255)
+              - column:
+                  name: street
+                  type: VARCHAR(255)
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  name: post_code
+                  type: VARCHAR(255)
+            tableName: adddresses
+  - changeSet:
+      id: 1774099369693-2
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_amenities
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: hotel_id
+                  type: BIGINT
+            tableName: amenities
+  - changeSet:
+      id: 1774099369693-3
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_arrival_times
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: check_in
+                  type: TIME
+              - column:
+                  name: check_out
+                  type: TIME
+            tableName: arrival_times
+  - changeSet:
+      id: 1774099369693-4
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_contacts
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: phone
+                  type: VARCHAR(255)
+              - column:
+                  name: email
+                  type: VARCHAR(255)
+            tableName: contacts
+  - changeSet:
+      id: 1774099369693-5
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_hotels
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: description
+                  type: VARCHAR(255)
+              - column:
+                  name: brand
+                  type: VARCHAR(255)
+              - column:
+                  name: address_id
+                  type: BIGINT
+              - column:
+                  name: contact_id
+                  type: BIGINT
+              - column:
+                  name: arrival_time_id
+                  type: BIGINT
+            tableName: hotels
+  - changeSet:
+      id: 1774099369693-6
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: address_id
+            constraintName: uc_hotels_address
+            tableName: hotels
+  - changeSet:
+      id: 1774099369693-7
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: arrival_time_id
+            constraintName: uc_hotels_arrival_time
+            tableName: hotels
+  - changeSet:
+      id: 1774099369693-8
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addUniqueConstraint:
+            columnNames: contact_id
+            constraintName: uc_hotels_contact
+            tableName: hotels
+  - changeSet:
+      id: 1774099369693-9
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: hotel_id
+            baseTableName: amenities
+            constraintName: FK_AMENITIES_ON_HOTEL
+            referencedColumnNames: id
+            referencedTableName: hotels
+  - changeSet:
+      id: 1774099369693-10
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: address_id
+            baseTableName: hotels
+            constraintName: FK_HOTELS_ON_ADDRESS
+            referencedColumnNames: id
+            referencedTableName: adddresses
+  - changeSet:
+      id: 1774099369693-11
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: arrival_time_id
+            baseTableName: hotels
+            constraintName: FK_HOTELS_ON_ARRIVAL_TIME
+            referencedColumnNames: id
+            referencedTableName: arrival_times
+  - changeSet:
+      id: 1774099369693-12
+      author: admin
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: contact_id
+            baseTableName: hotels
+            constraintName: FK_HOTELS_ON_CONTACT
+            referencedColumnNames: id
+            referencedTableName: contacts
+

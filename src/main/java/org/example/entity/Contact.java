@@ -20,7 +20,7 @@ public class Contact {
 
     private String email;
 
-    @OneToOne
+    @OneToOne(mappedBy = "contacts")
     private Hotel hotel;
 
 }

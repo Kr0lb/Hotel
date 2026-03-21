@@ -2,15 +2,16 @@ spring:
   application:
     name: hotel-service
   datasource:
-    username: user
-    password: password
-    url: jdbc:h2:mem:hotel_db
-    driver-class-name: org.h2.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/hotel_db
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: none
     open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
     change-log: db/db.changelog-master.yaml
 

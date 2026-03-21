@@ -1,6 +1,8 @@
-package org.example.dto.response;
+package org.example.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,17 +10,12 @@ import org.example.dto.AddressDto;
 import org.example.dto.ArrivalTimeDto;
 import org.example.dto.ContactDto;
 
-import java.util.Set;
-
 @Getter
 @Setter
 @Builder
-@Schema(description = "Полная информация об отеле")
-public class HotelFullResponseDto {
+public class HotelRequestDto {
 
-    @Schema(description = "Id", example = "1")
-    private Long id;
-
+    @Pattern(regexp = "^[\\w 0-9]+$")
     @Schema(description = "Название отеля", example = "DoubleTree by Hilton Minsk")
     private String name;
 
@@ -26,20 +23,17 @@ public class HotelFullResponseDto {
             The DoubleTree by Hilton Hotel Minsk offers 193 luxurious rooms in the Belorussian capital and stunning views of Minsk city from the hotel's 20th floor ...""")
     private String description;
 
+    @Pattern(regexp = "^[A-z0-9 ]*$")
     @Schema(description = "Бренд", example = "Hilton")
     private String brand;
 
+    @NotNull
     private AddressDto address;
-    private ContactDto contacts;
-    private ArrivalTimeDto arrivalTime;
 
-    @Schema(description = "Удобства",
-            example = """
-                    {
-                        "Minsk": 1,
-                        "Moscow": 2,
-                        "Mogilev": 1
-                    }""")
-    private Set<String> amenities;
+    @NotNull
+    private ContactDto contacts;
+
+    @NotNull
+    private ArrivalTimeDto arrivalTime;
 
 }

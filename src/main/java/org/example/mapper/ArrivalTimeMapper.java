@@ -1,8 +1,9 @@
 package org.example.mapper;
 
-import org.example.dto.response.ArrivalTimeResponseDto;
+import org.example.dto.ArrivalTimeDto;
 import org.example.entity.ArrivalTime;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
@@ -10,6 +11,10 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ArrivalTimeMapper {
 
-    ArrivalTimeResponseDto toArrivalTimeResponseDto(ArrivalTime arrivalTime);
+    ArrivalTimeDto toArrivalTimeResponseDto(ArrivalTime arrivalTime);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "hotel", ignore = true)
+    ArrivalTime arrivalTimeDtoToArrivalTime(ArrivalTimeDto arrivalTimeDto);
 
 }

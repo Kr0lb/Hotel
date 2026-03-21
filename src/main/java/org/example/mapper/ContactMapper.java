@@ -1,8 +1,9 @@
 package org.example.mapper;
 
-import org.example.dto.response.ContactResponseDto;
+import org.example.dto.ContactDto;
 import org.example.entity.Contact;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
@@ -10,6 +11,10 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
         nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface ContactMapper {
 
-    ContactResponseDto toContactResponseDto(Contact contact);
+    ContactDto toContactResponseDto(Contact contact);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "hotel", ignore = true)
+    Contact contactDtoToContact(ContactDto contactDto);
 
 }
